@@ -1,0 +1,130 @@
+/* Portfolio Page Styles */
+.portfolio-container {
+  background: #0a0a0a;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.portfolio-header {
+  padding: 2rem 0;
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+.category-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.category-button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.category-button:hover,
+.category-button.active {
+  background: #fff;
+  color: #000;
+}
+
+.gallery-grid {
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.gallery-grid.loaded {
+  opacity: 1;
+}
+
+.gallery-item {
+  cursor: zoom-in;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  padding: 2rem 1rem 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+
+.photo-title {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.photo-location {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* PhotoSwipe Customization */
+.pswp {
+  --pswp-bg: #000000;
+}
+
+.pswp__counter {
+  color: #fff;
+  opacity: 0.7;
+}
+
+.pswp__caption {
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.pswp__caption__center {
+  max-width: 800px;
+  text-align: left;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.photo-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.photo-meta {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.photo-meta strong {
+  color: #fff;
+  display: block;
+  margin-bottom: 0.3rem;
+}

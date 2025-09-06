@@ -1,0 +1,89 @@
+import React from "react";
+import { Camera, Heart, Star, Users } from "lucide-react";
+
+export default function About() {
+  const values = [
+    {
+      icon: Heart,
+      title: "Passion",
+      description: "Photography isn't just my job—it's my passion. I pour my heart into every shot."
+    },
+    {
+      icon: Star,
+      title: "Excellence",
+      description: "I strive for perfection in every detail, ensuring each photo tells a beautiful story."
+    },
+    {
+      icon: Users,
+      title: "Connection",
+      description: "Building genuine connections with my clients creates authentic, meaningful photographs."
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* About SenPicta Hero Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center space-x-2 mb-6 px-4 py-2 bg-yellow-400/10 rounded-full border border-yellow-400/20">
+                <Camera className="w-4 h-4 text-yellow-600" />
+                <span className="text-yellow-700 font-medium text-sm">About SenPicta</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+                Welcome to SenPicta
+              </h1>
+              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  Hi, I’m Sudip Sen, the creator of SenPicta. I’m passionate about Landscape, Portrait, Macro, NightScape, and Street Photography.
+                </p>
+                <p>
+                  My goal is to share my vision, connect with fellow enthusiasts, and earn recognition and income by selling my work. Every photo is a story, and I hope my work inspires and connects with you.
+                </p>
+                <p>
+                  If you like my work, consider buying a print or digital download, or just reach out to say hello. Your support helps me grow and continue creating.
+                </p>
+              </div>
+            </div>
+            {/* Photo Placeholder - Update your photo here! */}
+            <div className="relative flex flex-col items-center">
+              <div className="relative z-10">
+                <img
+                  src="/public/your-photo.jpg" // <-- Replace this path with your own photo, e.g. /public/sudip-sen.jpg
+                  alt="Sudip Sen - Photographer"
+                  className="w-full max-w-xs rounded-2xl shadow-2xl border border-yellow-200"
+                />
+              </div>
+              <div className="mt-2 text-sm text-gray-500">To update your photo, replace <code>/public/your-photo.jpg</code> with your own image path.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Values */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-yellow-700 mb-4">
+              My Values
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              The principles that guide my work and define my approach to photography
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {values.map((value) => (
+              <div key={value.title} className="bg-yellow-50 rounded-2xl p-8 border border-yellow-100 hover:border-yellow-400/30 transition-all duration-500 hover:scale-105 text-center group">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-amber-300 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <value.icon className="w-8 h-8 text-yellow-700" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
