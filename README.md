@@ -1,5 +1,6 @@
 
-# SenPicta - Final Version V1.0
+
+# SenPicta - Final Version V2.0
 Released: September 16, 2025
 
 # React + Vite

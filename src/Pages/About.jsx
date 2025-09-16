@@ -1,3 +1,5 @@
+// SenPicta - Final Version V2.0
+// Released: September 16, 2025
 
 import React from "react";
 import { Camera, Heart, Star, Users } from "lucide-react";
@@ -24,43 +26,29 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white">
       {/* About SenPicta Hero Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center space-x-2 mb-6 px-4 py-2 bg-yellow-400/10 rounded-full border border-yellow-400/20">
-                <Camera className="w-4 h-4 text-yellow-600" />
-                <span className="text-yellow-700 font-medium text-sm">About SenPicta</span>
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
-                Welcome to SenPicta
-              </h1>
-              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p>
-                  Hi, I’m <span className="font-semibold">Sudip Sen</span> — a husband, proud father, and the storyteller behind <span className="font-semibold">SenPicta</span>.<br/>
-                  While family grounds me, photography fuels my soul.
-                </p>
-                <p>
-                  For me, the camera isn’t just a tool — it’s a way to freeze fleeting moments, uncover hidden beauty, and share emotions that words often can’t. Whether I’m capturing the quiet poetry of a landscape, the intimacy of a portrait, the wonder of tiny details in macro, or the energy of the streets at night, each frame is a chapter of my journey.
-                </p>
-                <p>
-                  SenPicta is more than a portfolio — it’s a collection of stories told through light and shadow. My dream is to inspire others, connect with fellow creators, and build a community where art and passion meet.
-                </p>
-                <p>
-                  Thank you for stopping by and supporting my work. Whether you choose to buy a print, download a digital copy, or simply share a kind word, you become a part of my creative story. Together, we can celebrate the beauty of life, one frame at a time.
-                </p>
-              </div>
-            </div>
-            {/* Photo Placeholder - Update your photo here! */}
-            <div className="relative flex flex-col items-center">
-              <div className="relative z-10">
-                <img
-                  src="/my-family-photo.jpg" // <-- Correct path for Vercel/public folder
-                  alt="Sudip Sen - Photographer"
-                  className="w-full max-w-xs rounded-2xl shadow-2xl border border-yellow-200"
-                />
-              </div>
-              {/* <div className="mt-2 text-sm text-gray-500">To update your photo, replace <code>/public/your-photo.jpg</code> with your own image path.</div> */}
+      <section
+        className="relative py-20 min-h-[500px] flex items-center justify-center bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/my-family-photo.jpg')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+        <div className="relative z-10 flex justify-end w-full px-6">
+          <div className="bg-white/60 rounded-2xl shadow-2xl p-8 md:p-12 text-left backdrop-blur-md max-w-2xl w-full">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 text-right">Welcome to SenPicta</h1>
+            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+              <p className="text-justify">
+                Hi, I’m <span className="font-semibold">Sudip Sen</span> — a husband, proud father, and the storyteller behind <span className="font-semibold">SenPicta</span>. While family grounds me, photography fuels my soul.<br/>
+              </p>
+              <p className="text-justify">
+                For me, the camera isn’t just a tool — it’s a way to freeze fleeting moments, uncover hidden beauty, and share emotions that words often can’t. Whether I’m capturing the quiet poetry of a landscape, the intimacy of a portrait, the wonder of tiny details in macro, or the energy of the streets at night, each frame is a chapter of my journey.
+              </p>
+              <p className="text-justify">
+                <span className="font-semibold">SenPicta</span> is more than a portfolio — it’s a collection of stories told through light and shadow. My dream is to inspire others, connect with fellow creators, and build a community where art and passion meet.
+              </p>
+              <p className="text-justify">
+                Thank you for stopping by and supporting my work. Whether you choose to buy a print, download a digital copy, or simply share a kind word, you become a part of my journey & stories. Together, we can celebrate the beauty of life, one frame at a time.
+              </p>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ export default function Layout({ children, currentPageName }) {
   const navigationItems = [
     { name: "Home", path: createPageUrl("Home") },
     { name: "Portfolio", path: createPageUrl("Portfolio") },
-    { name: "About", path: createPageUrl("About") },
+    { name: "About SenPicta", path: createPageUrl("About") },
     { name: "Services", path: createPageUrl("Services") },
     { name: "Contact", path: createPageUrl("Contact") }
   ];
