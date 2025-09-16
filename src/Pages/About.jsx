@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Camera, Heart, Star, Users } from "lucide-react";
 
@@ -36,13 +37,17 @@ export default function About() {
               </h1>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Hi, I’m Sudip Sen, the creator of SenPicta. I’m passionate about Landscape, Portrait, Macro, NightScape, and Street Photography.
+                  Hi, I’m <span className="font-semibold">Sudip Sen</span> — a husband, proud father, and the storyteller behind <span className="font-semibold">SenPicta</span>.<br/>
+                  While family grounds me, photography fuels my soul.
                 </p>
                 <p>
-                  My goal is to share my vision, connect with fellow enthusiasts, and earn recognition and income by selling my work. Every photo is a story, and I hope my work inspires and connects with you.
+                  For me, the camera isn’t just a tool — it’s a way to freeze fleeting moments, uncover hidden beauty, and share emotions that words often can’t. Whether I’m capturing the quiet poetry of a landscape, the intimacy of a portrait, the wonder of tiny details in macro, or the energy of the streets at night, each frame is a chapter of my journey.
                 </p>
                 <p>
-                  If you like my work, consider buying a print or digital download, or just reach out to say hello. Your support helps me grow and continue creating.
+                  SenPicta is more than a portfolio — it’s a collection of stories told through light and shadow. My dream is to inspire others, connect with fellow creators, and build a community where art and passion meet.
+                </p>
+                <p>
+                  Thank you for stopping by and supporting my work. Whether you choose to buy a print, download a digital copy, or simply share a kind word, you become a part of my creative story. Together, we can celebrate the beauty of life, one frame at a time.
                 </p>
               </div>
             </div>
@@ -73,7 +78,10 @@ export default function About() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value) => (
-              <div key={value.title} className="bg-yellow-50 rounded-2xl p-8 border border-yellow-100 hover:border-yellow-400/30 transition-all duration-500 hover:scale-105 text-center group">
+              <div
+                key={value.title}
+                className="bg-yellow-50 rounded-2xl p-8 border border-yellow-100 hover:border-yellow-400/30 transition-all duration-500 hover:scale-105 text-center group"
+              >
                 <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-amber-300 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <value.icon className="w-8 h-8 text-yellow-700" />
                 </div>
