@@ -27,7 +27,11 @@ export default function Portfolio() {
       setIsLoading(true);
       try {
         const folder = selectedCategory === "all" ? "" : selectedCategory;
-  const res = await fetch(`/api/cloudinary-photos?folder=${folder}`);
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const apiBase = isLocal
+  ? "http://localhost:5001/api/cloudinary-photos"
+  : "/api/cloudinary-photos";
+const res = await fetch(`${apiBase}?folder=${folder}`);
         const data = await res.json();
         setPhotos(data.images || []);
       } catch {
