@@ -4,6 +4,8 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Label } from "../components/ui/label";
 import { Mail, Phone, MapPin, Instagram, Clock, Send, CheckCircle } from "lucide-react";
+import emailjs from "emailjs-com";
+
 // EmailJS integration will be added for sending emails
 
 export default function Contact() {
@@ -15,6 +17,7 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -24,19 +27,31 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const templateParams = {
+    const adminParams = {
       from_name: formData.name,
       from_email: formData.email,
       phone: formData.phone,
       message: formData.message,
     };
+    const userParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+    };
 
-    emailjs.send('service_qr3zwqb', 'template_0ou2fp6', templateParams, 'BuUgtbhAo2xfocmrZ')
-      .then((result) => {
+    setErrorMsg("");
+    emailjs.send('service_qr3zwqb', 'template_0ou2fp6', adminParams, 'BuUgtbhAo2xfocmrZ')
+      .then((adminResult) => {
+        console.log("Admin notification sent:", adminResult);
+        // After admin notification, send auto-reply
+        return emailjs.send('service_qr3zwqb', 'template_i3ro9im', userParams, 'BuUgtbhAo2xfocmrZ');
+      })
+      .then((userResult) => {
+        console.log("Auto-reply sent:", userResult);
         setIsSubmitted(true);
-      }, (error) => {
+      })
+      .catch((error) => {
+        setErrorMsg("There was an error sending your message. Please try again or contact directly.");
         console.error("Error sending email:", error);
-        alert("There was an error sending your message. Please try again or contact directly.");
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -45,15 +60,20 @@ export default function Contact() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex items-center justify-center py-20">
+      <div className="min-h-screen bg-white flex items-center justify-center py-20">
         <div className="max-w-md mx-auto px-6 text-center">
           <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-4">Message Sent!</h1>
-          <p className="text-gray-300 mb-8 leading-relaxed">
-            Thank you for reaching out! I'll get back to you within 24 hours to discuss your photography needs.
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Message Sent!</h1>
+          <p className="text-gray-700 mb-8 leading-relaxed">
+            Thank you for reaching out! I'll get back to you within 
+            three (3) business days to discuss your photography needs.
           </p>
+          <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-4 mb-6 text-left">
+            <div className="mb-2"><span className="font-semibold text-gray-700">Your message:</span></div>
+            <div className="text-gray-800 whitespace-pre-line">{formData.message}</div>
+          </div>
           <Button
             onClick={() => {
               setIsSubmitted(false);
@@ -61,7 +81,6 @@ export default function Contact() {
                 name: "",
                 email: "",
                 phone: "",
-                event_date: "",
                 message: ""
               });
             }}
@@ -143,21 +162,24 @@ export default function Contact() {
             </>
           )}
         </Button>
+        {errorMsg && (
+          <div className="text-red-600 mt-3 text-sm">{errorMsg}</div>
+        )}
       </form>
       <div className="flex justify-center space-x-8 mt-10">
-        <a href="mailto:elena@example.com" className="text-gray-500 hover:text-yellow-500 transition-colors flex items-center gap-2">
+        <a href="mailto:sudip2607@icloud.com" className="text-gray-500 hover:text-yellow-500 transition-colors flex items-center gap-2">
           <Mail className="w-5 h-5" /> Email
         </a>
-        <a href="tel:+1234567890" className="text-gray-500 hover:text-yellow-500 transition-colors flex items-center gap-2">
+        <a href="tel:+17322733347" className="text-gray-500 hover:text-yellow-500 transition-colors flex items-center gap-2">
           <Phone className="w-5 h-5" /> Call
         </a>
-        <a href="#" className="text-gray-500 hover:text-yellow-500 transition-colors flex items-center gap-2">
+        <a href="https://www.instagram.com/senpicta.visuals/" className="text-gray-500 hover:text-yellow-500 transition-colors flex items-center gap-2">
           <Instagram className="w-5 h-5" /> Instagram
         </a>
       </div>
       <div className="flex justify-center items-center gap-4 mt-8 text-gray-500">
-        <MapPin className="w-5 h-5" /> New York, NY
-        <Clock className="w-5 h-5" /> Mon-Fri 9am-6pm
+        <MapPin className="w-5 h-5" /> New Jersey, NJ
+        <Clock className="w-5 h-5" /> Mon-Fri 4pm-8pm
       </div>
     </section>
   );
