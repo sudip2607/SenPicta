@@ -42,8 +42,8 @@ export default function Services() {
 						Services
 					</h1>
 					<p className="text-xl text-gray-700 max-w-3xl mx-auto">
-						I offer prints, digital downloads, and creative collaborations.
-						Support my journey by purchasing or sharing my work!
+						Still in progress, will be up and running soon once legal complications are resolved. 
+						I plan to offer prints, digital downloads, and creative collaborations. Please support my journey by offering me a coffee or sharing my work with your friends and colleagues!
 					</p>
 				</div>
 
