@@ -1,3 +1,7 @@
+
+# SenPicta - Final Version V1.0
+Released: September 16, 2025
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

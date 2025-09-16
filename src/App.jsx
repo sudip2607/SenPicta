@@ -1,3 +1,5 @@
+// SenPicta - Final Version V1.0
+// Released: September 16, 2025
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Pages/Home";
