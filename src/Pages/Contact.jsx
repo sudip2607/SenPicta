@@ -11,7 +11,6 @@ export default function Contact() {
     name: "",
     email: "",
     phone: "",
-  event_date: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,7 +28,6 @@ export default function Contact() {
       from_name: formData.name,
       from_email: formData.email,
       phone: formData.phone,
-      event_date: formData.event_date || 'Not specified',
       message: formData.message,
     };
 
@@ -63,7 +61,6 @@ export default function Contact() {
                 name: "",
                 email: "",
                 phone: "",
-                service: "",
                 event_date: "",
                 message: ""
               });
@@ -84,17 +81,19 @@ export default function Contact() {
         Ready to capture your special moments? I'd love to hear about your vision and discuss how we can bring it to life together.
       </p>
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-yellow-50 rounded-lg p-8 shadow-lg flex flex-col gap-6 border border-yellow-100">
-        <div>
+        <div className="text-left">
+          <Label htmlFor="name" className="mb-1 block text-gray-700 font-medium">Name</Label>
           <Input
             id="name"
             required
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
             placeholder="Your Name"
-            className="w-full bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-yellow-400"
+            className="w-full bg-white border-yellow-200 text-gray-800 focus:border-yellow-400"
           />
         </div>
-        <div>
+        <div className="text-left">
+          <Label htmlFor="email" className="mb-1 block text-gray-700 font-medium">Email</Label>
           <Input
             id="email"
             type="email"
@@ -102,29 +101,21 @@ export default function Contact() {
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
             placeholder="Your Email"
-            className="w-full bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-yellow-400"
+            className="w-full bg-white border-yellow-200 text-gray-800 focus:border-yellow-400"
           />
         </div>
-        <div>
+        <div className="text-left">
+          <Label htmlFor="phone" className="mb-1 block text-gray-700 font-medium">Phone Number</Label>
           <Input
             id="phone"
             type="tel"
             value={formData.phone}
             onChange={(e) => handleInputChange('phone', e.target.value)}
             placeholder="(555) 123-4567"
-            className="w-full bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-yellow-400"
-          />
-        </div>
-        {/* Service dropdown removed as requested */}
-        <div>
-          <Input
-            id="event_date"
-            type="date"
-            value={formData.event_date}
-            onChange={(e) => handleInputChange('event_date', e.target.value)}
             className="w-full bg-white border-yellow-200 text-gray-800 focus:border-yellow-400"
           />
         </div>
+
         <div>
           <Textarea
             id="message"
