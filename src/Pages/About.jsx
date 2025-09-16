@@ -50,7 +50,7 @@ export default function About() {
             <div className="relative flex flex-col items-center">
               <div className="relative z-10">
                 <img
-                  src="/public/your-photo.jpg" // <-- Replace this path with your own photo, e.g. /public/sudip-sen.jpg
+                  src="/public/my-family-photo.jpg" // <-- Replace this path with your own photo, e.g. /public/sudip-sen.jpg
                   alt="Sudip Sen - Photographer"
                   className="w-full max-w-xs rounded-2xl shadow-2xl border border-yellow-200"
                 />
