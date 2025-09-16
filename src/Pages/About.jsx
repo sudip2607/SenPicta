@@ -55,7 +55,7 @@ export default function About() {
                   className="w-full max-w-xs rounded-2xl shadow-2xl border border-yellow-200"
                 />
               </div>
-              <div className="mt-2 text-sm text-gray-500">To update your photo, replace <code>/public/your-photo.jpg</code> with your own image path.</div>
+              {/* <div className="mt-2 text-sm text-gray-500">To update your photo, replace <code>/public/your-photo.jpg</code> with your own image path.</div> */}
             </div>
           </div>
         </div>
