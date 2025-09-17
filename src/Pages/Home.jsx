@@ -108,7 +108,7 @@ export default function Home() {
         <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{color:'#d4af37'}}>SenPicta Visuals</h1>
         <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{color:'#d4af37'}}>Stories in Lights and Shadows</h2>
         <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
-          Welcome Beautiful! I am Sudip Sen and I am passionate about Landscape, Portrait, Macro, NightScape, and Street Photography. Explore my work, buy me a coffee if you enjoyed it, and <b>help me grow as an artist</b>.
+          Welcome Beautiful! I am Sudip Sen and I am passionate about Landscape, Portrait, Macro, NightScape, and Street Photography. Explore my work, share it with others if you enjoyed it, and <b>help me grow as an artist</b>.
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center mb-10">
           <Link to={createPageUrl("Portfolio")}> <Button>View Portfolio <ArrowRight className="inline ml-2 w-4 h-4" /></Button> </Link>
