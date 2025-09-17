@@ -26,12 +26,19 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white">
       {/* About SenPicta Hero Section */}
-      <section
-        className="relative py-20 min-h-[500px] flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/my-family-photo.jpg')",
-        }}
-      >
+      <section className="relative py-20 min-h-[500px] flex items-center justify-center bg-cover bg-center">
+        <picture>
+          <source srcSet="/my-family-photo.avif" type="image/avif" />
+          <source srcSet="/my-family-photo.webp" type="image/webp" />
+          <img
+            src="/my-family-photo.jpg"
+            alt="Sudip Sen - Photographer"
+            className="absolute inset-0 w-full h-full object-cover object-center z-0"
+            style={{ minHeight: '500px' }}
+            aria-hidden="true"
+            loading="eager"
+          />
+        </picture>
         <div className="absolute inset-0 bg-black/40" aria-hidden="true"></div>
         <div className="relative z-10 flex justify-end w-full px-6">
           <div className="bg-white/60 rounded-2xl shadow-2xl p-8 md:p-12 text-left backdrop-blur-md max-w-2xl w-full">
