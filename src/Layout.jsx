@@ -29,7 +29,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Logo */}
             <Link to={createPageUrl("Home")} className="flex items-center space-x-3 group">
               <img src={logoSrc} alt="SenPicta Logo" className="w-20 h-20 rounded-lg object-contain" />
-              <img src="/SenPicta-Logo-Layered.png" alt="SenPicta Logo" className="h-10 w-auto object-contain" />
+              <img src="/SenPicta-Logo-Layered.png" alt="SenPicta Logo" className="h-16 w-auto object-contain" />
             </Link>
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">

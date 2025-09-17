@@ -39,7 +39,7 @@ export default function About() {
             loading="eager"
           />
         </picture>
-        <div className="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+        <div className="absolute inset-0 bg-black/15" aria-hidden="true"></div>
         <div className="relative z-10 flex justify-end w-full px-6">
           <div className="bg-white/60 rounded-2xl shadow-2xl p-8 md:p-12 text-left backdrop-blur-md max-w-2xl w-full">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 text-right">Welcome to SenPicta</h1>
