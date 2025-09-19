@@ -7,6 +7,7 @@ import Portfolio from "./Pages/Portfolio";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Contact from "./Pages/Contact";
+import ScrollToTop from "./Pages/ScrollToTop";
 
 const pageNames = {
   Home: "Home",
@@ -19,6 +20,7 @@ const pageNames = {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout currentPageName={pageNames.Home}><Home /></Layout>} />
         <Route path="/portfolio" element={<Layout currentPageName={pageNames.Portfolio}><Portfolio /></Layout>} />
