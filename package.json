@@ -17,6 +17,7 @@
     "emailjs-com": "^3.2.0",
     "express": "^5.1.0",
     "lucide-react": "^0.542.0",
+    "morgan": "^1.10.1",
     "photoswipe": "^5.4.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -36,5 +37,10 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.3.3",
     "vite": "^7.1.2"
-  }
+  },
+  "description": "Released: September 16, 2025",
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
