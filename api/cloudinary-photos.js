@@ -1,4 +1,4 @@
-export const config = { runtime: "nodejs20.x" };
+export const config = { runtime: "nodejs" };
 
 import { v2 as cloudinary } from "cloudinary";
 
@@ -32,7 +32,6 @@ async function trySearch(folder, max) {
   variants.push(base.concat(folder ? [`folder:${folder}`] : []).join(" AND "));
   if (folder) variants.push(base.concat([`folder="${folder}"`]).join(" AND "));
   if (folder) variants.push(base.concat([`public_id:${folder}/*`]).join(" AND "));
-
   for (const expr of variants) {
     try {
       const result = await withTimeout(
@@ -41,9 +40,7 @@ async function trySearch(folder, max) {
       );
       const arr = (result.resources || []).map(mapResource);
       if (arr.length) return { images: arr, via: "search", expression: expr };
-    } catch {
-      // try next
-    }
+    } catch {}
   }
   return null;
 }
@@ -61,13 +58,12 @@ async function tryAdmin(folder, max) {
 }
 
 export default async function handler(req, res) {
-  // CORS (optional)
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   if (req.method !== "GET") return res.status(405).json({ ok: false, error: "Method not allowed" });
 
-  // Configure here (inside handler) so Edge import phase never touches process.env
+  // Configure here (Edge-safe)
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -79,15 +75,13 @@ export default async function handler(req, res) {
 
   try {
     const viaSearch = await trySearch(folder, max);
-    if (viaSearch && viaSearch.images.length) {
+    if (viaSearch?.images?.length) {
       return res.status(200).json({ ok: true, count: viaSearch.images.length, folder: folder || null, via: viaSearch.via, images: viaSearch.images });
     }
-
     const viaAdmin = await tryAdmin(folder, max);
-    if (viaAdmin && viaAdmin.images.length) {
+    if (viaAdmin?.images?.length) {
       return res.status(200).json({ ok: true, count: viaAdmin.images.length, folder: folder || null, via: viaAdmin.via, images: viaAdmin.images });
     }
-
     return res.status(404).json({
       ok: false,
       error: "No images found.",

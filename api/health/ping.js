@@ -9,9 +9,9 @@ export default async function handler(_req, res) {
     api_secret: process.env.CLOUDINARY_API_SECRET,
   });
   try {
-    const root = await cloudinary.api.root_folders();
-    res.status(200).json({ ok: true, folders: root.folders || [] });
+    const ping = await cloudinary.api.ping();
+    res.status(200).json({ ok: true, ping });
   } catch (e) {
-    res.status(502).json({ ok: false, error: e?.message || "Failed to list folders" });
+    res.status(502).json({ ok: false, error: e?.message || "Ping failed" });
   }
 }
