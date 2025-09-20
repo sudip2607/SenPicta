@@ -80,6 +80,7 @@ export default function Portfolio() {
   const [buyType, setBuyType] = useState(null);
   const [showDigitalModal, setShowDigitalModal] = useState(false);
   const [digitalPaid, setDigitalPaid] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const categories = [
     { value: "all", label: "All Genres" },
@@ -397,6 +398,7 @@ export default function Portfolio() {
                           setBuyType("digital");
                           setShowDigitalModal(true);
                           setDigitalPaid(false);
+                          setShowComingSoon(true);
                         }}
                       >
                         Buy Digital
@@ -424,42 +426,62 @@ export default function Portfolio() {
 
                 {/* Digital Purchase Modal */}
                 {showDigitalModal && selectedPhoto && (
-                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onClick={() => setShowDigitalModal(false)}>
+                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" onClick={() => { setShowDigitalModal(false); setShowComingSoon(false); }}>
                     <div className="bg-white rounded-lg max-w-md w-full p-8 relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
                       <button
                         className="absolute top-4 right-4 text-gray-500 hover:text-yellow-400 text-2xl font-bold bg-transparent border-none p-0 m-0 shadow-none focus:outline-none"
-                        onClick={() => setShowDigitalModal(false)}
+                        onClick={() => { setShowDigitalModal(false); setShowComingSoon(false); }}
                         aria-label="Close"
                         style={{ cursor: "pointer", background: "transparent", border: "none", boxShadow: "none", padding: 0, margin: 0 }}
                       >
                         ×
                       </button>
+                      {showComingSoon && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 z-50 rounded-lg">
+                          <div className="bg-white rounded-lg p-6 shadow-xl text-center max-w-xs mx-auto">
+                            <h2 className="text-xl font-bold mb-2 text-yellow-700">Coming Soon</h2>
+                            <p className="text-gray-700 mb-2">Download not available yet.</p>
+                            <button
+                              className="mt-2 px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded"
+                              onClick={() => {
+                                setShowComingSoon(false);
+                                setShowDigitalModal(false);
+                              }}
+                            >
+                              OK
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                      {/* PayPal modal is still present but visually blocked by the coming soon modal */}
                       {!digitalPaid ? (
-                        <PayPalScriptProvider options={{ "client-id": "AaEctospHQg3QstuFsifp2s9uJQT1PLlHRCipWigQw5Zk27XOz3vYLBBd-rGYNmfECqMWh0QGz7btyi6", currency: "USD" }}>
-                          <h2 className="text-2xl font-bold mb-4 text-yellow-700">Buy Digital Download</h2>
-                          <div className="mb-4">
-                            <span className="font-semibold text-lg text-gray-800">Price: </span>
-                            <span className="text-green-700 font-bold">$10</span>
-                          </div>
-                          <div className="mb-6 text-gray-600 text-sm">
-                            After payment, you'll get instant access to download the highest resolution image.<br />
-                            <span className="text-xs text-gray-400">(No watermark/logo on download)</span>
-                          </div>
-                          <PayPalButtons
-                            style={{ layout: "vertical", color: "gold", shape: "rect", label: "pay" }}
-                            createOrder={(data, actions) => {
-                              return actions.order.create({
-                                purchase_units: [{ amount: { value: "10.00" }, description: `Digital download: ${selectedPhoto.title}` }],
-                              });
-                            }}
-                            onApprove={async (data, actions) => {
-                              await actions.order.capture();
-                              setDigitalPaid(true);
-                            }}
-                            onError={() => alert("Payment failed. Please try again or contact me.")}
-                          />
-                          <div className="text-xs text-gray-400 mt-4 text-center">Payments are processed securely by PayPal.</div>
-                        </PayPalScriptProvider>
+                        <div style={{ filter: showComingSoon ? 'blur(2px)' : 'none', pointerEvents: showComingSoon ? 'none' : 'auto' }}>
+                          <PayPalScriptProvider options={{ "client-id": "AaEctospHQg3QstuFsifp2s9uJQT1PLlHRCipWigQw5Zk27XOz3vYLBBd-rGYNmfECqMWh0QGz7btyi6", currency: "USD" }}>
+                            <h2 className="text-2xl font-bold mb-4 text-yellow-700">Buy Digital Download</h2>
+                            <div className="mb-4">
+                              <span className="font-semibold text-lg text-gray-800">Price: </span>
+                              <span className="text-green-700 font-bold">$10</span>
+                            </div>
+                            <div className="mb-6 text-gray-600 text-sm">
+                              After payment, you'll get instant access to download the highest resolution image.<br />
+                              <span className="text-xs text-gray-400">(No watermark/logo on download)</span>
+                            </div>
+                            <PayPalButtons
+                              style={{ layout: "vertical", color: "gold", shape: "rect", label: "pay" }}
+                              createOrder={(data, actions) => {
+                                return actions.order.create({
+                                  purchase_units: [{ amount: { value: "10.00" }, description: `Digital download: ${selectedPhoto.title}` }],
+                                });
+                              }}
+                              onApprove={async (data, actions) => {
+                                await actions.order.capture();
+                                setDigitalPaid(true);
+                              }}
+                              onError={() => alert("Payment failed. Please try again or contact me.")}
+                            />
+                            <div className="text-xs text-gray-400 mt-4 text-center">Payments are processed securely by PayPal.</div>
+                          </PayPalScriptProvider>
+                        </div>
                       ) : (
                         (() => {
                           const baseUrl = selectedPhoto.image_url;
